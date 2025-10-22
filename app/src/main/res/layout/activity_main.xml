@@ -68,7 +68,7 @@
         >
 
         <TextView
-            android:id="@+id/TVfirstnum"
+            android:id="@+id/TVfirstnum1"
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
@@ -107,7 +107,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@color/material_dynamic_neutral50"
-            android:text="תשובה"
+            android:hint="תשובה"
             android:textAlignment="center" />
 
         <Button

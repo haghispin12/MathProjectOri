@@ -3,27 +3,41 @@ package com.example.mathporjectori;
 import java.util.Random;
 
 public class Exercise {
+    private Excallback excallback;
+
     private int num1;
     private int num2;
     private String enswer;
 
-    public void upto10(){
+    public Exercise(Excallback excallback) {
+        this.excallback = excallback;
+    }
+
+    public Exercise() {
+
+    }
+
+    public void upto10() {
 
         Random r = new Random();
         num1 = r.nextInt(10) + 1;
-        num2 = r.nextInt(90) + 10;
-        enswer=(num2*num1+"") ;
+        num2 = r.nextInt(10) + 1;
+        enswer = (num2 * num1 + "");
+
     }
-    public void upto20(){
+
+    public void upto20() {
         Random r = new Random();
         num1 = r.nextInt(10) + 10;
         num2 = r.nextInt(10) + 1;
-        enswer=(num2*num1+"") ;
+        enswer = (num2 * num1 + "");
     }
-    public void upto100(){
+
+    public void upto100() {
         Random r = new Random();
         num1 = r.nextInt(10) + 1;
-        num2 = r.nextInt(10) + 1;
-        enswer=(num2*num1+"");
+        num2 = r.nextInt(100) + 10;
+        enswer = (num2 * num1 + "");
     }
 }
+

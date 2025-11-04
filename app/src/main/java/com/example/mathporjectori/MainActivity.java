@@ -18,6 +18,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+        private Excallback excallback;
     private  Exercise e1;
     private Button buttonup10;
     private Button buttonup20;
@@ -28,14 +29,28 @@ public class MainActivity extends AppCompatActivity {
     private TextView  TVfirstnum;
     private String enswer;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        excallback=new Excallback() {
+            @Override
+            public void showNumber(int number1, int number2) {
+
+            }
+        };
+
+
+
+
+        Excallback Excallback;
+        e1 = new Exercise();
         TVfirstnum=findViewById(R.id.TVfirstnum1);
         Etenswer=findViewById(R.id.Etenswer);
         TVseconednum=findViewById(R.id.TVseconednum);
-
         buttoncheck=findViewById(R.id.buttoncheck);
         buttoncheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,16 +58,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        excallback = new Excallback() {
+            @Override
+            public void showNumber(int number1, int number2) {
+                TVfirstnum.setText(number1);
+                TVseconednum.setText(number2);
+            }
+        };
 
 
         buttonexsercise=findViewById(R.id.buttonexsercise);
         buttonexsercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num1=0;
-                int num2 = 0;
-                TVfirstnum.setText(num1+"");
-                TVseconednum.setText(num2+"");
+                e1.upto100();
             }
         });
 
@@ -60,14 +79,7 @@ public class MainActivity extends AppCompatActivity {
         buttonup20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num1 ;
-                int num2 ;
-                Random r = new Random();
-                num1 = r.nextInt(10) + 10;
-                num2 = r.nextInt(10) + 1;
-                enswer=(num2*num1+"") ;
-                TVfirstnum.setText(num1+"");
-                TVseconednum.setText(num2+"");
+               e1.upto20();
             }
         });
 
@@ -75,14 +87,7 @@ public class MainActivity extends AppCompatActivity {
         buttonup10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int num1 ;
-                int num2 ;
-                Random r = new Random();
-                 num1 = r.nextInt(10) + 1;
-                num2 = r.nextInt(10) + 1;
-                 enswer=(num2*num1+"");
-                TVfirstnum.setText(num1+"");
-                TVseconednum.setText(num2+"");
+            e1.upto10();
             }
 
         });

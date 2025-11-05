@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText Etenswer ;
     private TextView TVseconednum;
     private TextView  TVfirstnum;
-    private String enswer;
+
 
 
     @Override
@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         excallback=new Excallback() {
             @Override
             public void showNumber(int number1, int number2) {
-
+            TVfirstnum.setText(number1+"");
+            TVseconednum.setText(number2+"");
             }
         };
 
@@ -47,17 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         Excallback Excallback;
-        e1 = new Exercise();
+        e1 = new Exercise(excallback);
         TVfirstnum=findViewById(R.id.TVfirstnum1);
         Etenswer=findViewById(R.id.Etenswer);
         TVseconednum=findViewById(R.id.TVseconednum);
         buttoncheck=findViewById(R.id.buttoncheck);
-        buttoncheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
+
         excallback = new Excallback() {
             @Override
             public void showNumber(int number1, int number2) {
@@ -65,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 TVseconednum.setText(number2);
             }
         };
-
-
         buttonexsercise=findViewById(R.id.buttonexsercise);
         buttonexsercise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,19 +84,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
             e1.upto10();
             }
-
         });
         buttoncheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             String str = Etenswer.getText().toString();
 
-                if (str.equals(enswer))
+
+                if(e1.check(Etenswer.getText().toString()))
                     Toast.makeText(MainActivity.this,"success",Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(MainActivity.this,"fail",Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
 
 

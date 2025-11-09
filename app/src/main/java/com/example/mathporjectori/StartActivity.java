@@ -1,6 +1,8 @@
 package com.example.mathporjectori;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,11 +15,23 @@ import androidx.core.view.WindowInsetsCompat;
 public class StartActivity extends AppCompatActivity {
     private Button sub;
     private EditText name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_start);
+        name=findViewById(R.id.dwewd);
+        sub=findViewById(R.id.reuiv);
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(StartActivity.this,MainActivity.class);
+                intent.putExtra("userkey",name.getText().toString());;
+
+            }
+        });
+
 
 
 

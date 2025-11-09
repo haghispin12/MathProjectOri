@@ -1,5 +1,6 @@
 package com.example.mathporjectori;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.DataFailCause;
 import android.view.View;
@@ -96,7 +97,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"fail",Toast.LENGTH_SHORT).show();
             }
         });
-
+        Intent intent= getIntent();
+        String username=intent.getStringExtra("userkey");
 
 
 

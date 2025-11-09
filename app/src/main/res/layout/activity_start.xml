@@ -18,11 +18,13 @@
         android:layout_height="50dp"
         android:hint="enter name"
         android:textAlignment="center"
+        android:id="@+id/dwewd"
 />
         <Button
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:text="submit"
+            android:id="@+id/reuiv"
 
             />
 </LinearLayout>

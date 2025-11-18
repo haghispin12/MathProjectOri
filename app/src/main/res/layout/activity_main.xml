@@ -12,11 +12,18 @@
 <TextView
     android:layout_width="match_parent"
     android:layout_height="0dp"
-    android:layout_weight="0.5"
+    android:layout_weight="0.7"
     android:text="Math"
     android:textAlignment="center"
     android:textSize="50dp"
     />
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:id="@+id/ratebutton"
+            android:text="Rate"
+            android:textSize="20dp"
+
 
     <LinearLayout
         style="?android:attr/buttonBarStyle"

@@ -23,8 +23,9 @@ public class Exercise {
         num1 = r.nextInt(10) + 1;
         num2 = r.nextInt(10) + 1;
         enswer=(num2 * num1 + "");
-        excallback.showNumber(num1,num2);
-
+      int  score=5;
+        excallback.showNumber(num1,num2,score);
+        //5
     }
 
     public void upto20() {
@@ -32,7 +33,9 @@ public class Exercise {
         num1 = r.nextInt(10) + 10;
         num2 = r.nextInt(10) + 1;
         enswer=(num2 * num1 + "");
-        excallback.showNumber(num1,num2);
+        int score=10;
+        excallback.showNumber(num1,num2, score);
+
     }
 
     public void upto100() {
@@ -40,7 +43,9 @@ public class Exercise {
         num1 = r.nextInt(10) + 1;
         num2 = r.nextInt(100) + 10;
         enswer=(num2 * num1 + "");
-        excallback.showNumber(num1,num2);
+        int score=20;
+        excallback.showNumber(num1,num2, score);
+
     }
     public boolean check(String answer){
         if(answer.equals(enswer))

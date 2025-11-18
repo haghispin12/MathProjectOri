@@ -2,20 +2,13 @@ package com.example.mathporjectori;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.DataFailCause;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText Etenswer ;
     private TextView TVseconednum;
     private TextView  TVfirstnum;
+    private int score ;
+    private User nom1;
 
 
 
@@ -36,10 +31,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        Intent intent= getIntent();
+        String username=intent.getStringExtra("userkey");
+       Toast.makeText(MainActivity.this,username,Toast.LENGTH_SHORT).show();
+       User nom1 = new User(username);
+
 
         excallback=new Excallback() {
             @Override
-            public void showNumber(int number1, int number2) {
+            public void showNumber(int number1, int number2, int score) {
             TVfirstnum.setText(number1+"");
             TVseconednum.setText(number2+"");
             }
@@ -58,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
         excallback = new Excallback() {
             @Override
-            public void showNumber(int number1, int number2) {
+            public void showNumber(int number1, int number2,int score1) {
                 TVfirstnum.setText(number1);
                 TVseconednum.setText(number2);
+                score=score1;
+
             }
         };
         buttonexsercise=findViewById(R.id.buttonexsercise);
@@ -91,14 +93,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if(e1.check(Etenswer.getText().toString()))
-                    Toast.makeText(MainActivity.this,"success",Toast.LENGTH_SHORT).show();
-                else
+                if(e1.check(Etenswer.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
+                    nom1.TrackScore(score);
+
+                }else
                     Toast.makeText(MainActivity.this,"fail",Toast.LENGTH_SHORT).show();
+                score=0;
             }
+
         });
-        Intent intent= getIntent();
-        String username=intent.getStringExtra("userkey");
+
 
 
 

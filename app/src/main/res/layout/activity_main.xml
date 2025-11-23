@@ -23,6 +23,7 @@
             android:id="@+id/ratebutton"
             android:text="Rate"
             android:textSize="20dp"
+            />
 
 
     <LinearLayout

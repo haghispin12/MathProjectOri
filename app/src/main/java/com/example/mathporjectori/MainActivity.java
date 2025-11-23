@@ -1,5 +1,6 @@
 package com.example.mathporjectori;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,22 +9,34 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-        private Excallback excallback;
-    private  Exercise e1;
+    private Excallback excallback;
+    private Exercise e1;
     private Button buttonup10;
     private Button buttonup20;
     private Button buttonexsercise;
     private Button buttoncheck;
-    private EditText Etenswer ;
+    private Button ratebutton;
+    private EditText Etenswer;
     private TextView TVseconednum;
-    private TextView  TVfirstnum;
-    private int score ;
+    private TextView TVfirstnum;
+    private int score;
     private User nom1;
 
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+
+        }
+    });
 
 
     @Override
@@ -31,41 +44,39 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Intent intent= getIntent();
-        String username=intent.getStringExtra("userkey");
-       Toast.makeText(MainActivity.this,username,Toast.LENGTH_SHORT).show();
-       User nom1 = new User(username);
-
-
-        excallback=new Excallback() {
-            @Override
-            public void showNumber(int number1, int number2, int score) {
-            TVfirstnum.setText(number1+"");
-            TVseconednum.setText(number2+"");
-            }
-        };
-
-
-
-
-        Excallback Excallback;
-        e1 = new Exercise(excallback);
-        TVfirstnum=findViewById(R.id.TVfirstnum1);
-        Etenswer=findViewById(R.id.Etenswer);
-        TVseconednum=findViewById(R.id.TVseconednum);
-        buttoncheck=findViewById(R.id.buttoncheck);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("userkey");
+        Toast.makeText(MainActivity.this, username, Toast.LENGTH_SHORT).show();
+        User nom1 = new User(username);
 
 
         excallback = new Excallback() {
             @Override
-            public void showNumber(int number1, int number2,int score1) {
+            public void showNumber(int number1, int number2, int score) {
+                TVfirstnum.setText(number1 + "");
+                TVseconednum.setText(number2 + "");
+            }
+        };
+
+
+        Excallback Excallback;
+        e1 = new Exercise(excallback);
+        TVfirstnum = findViewById(R.id.TVfirstnum1);
+        Etenswer = findViewById(R.id.Etenswer);
+        TVseconednum = findViewById(R.id.TVseconednum);
+        buttoncheck = findViewById(R.id.buttoncheck);
+
+
+        excallback = new Excallback() {
+            @Override
+            public void showNumber(int number1, int number2, int score1) {
                 TVfirstnum.setText(number1);
                 TVseconednum.setText(number2);
-                score=score1;
+                score = score1;
 
             }
         };
-        buttonexsercise=findViewById(R.id.buttonexsercise);
+        buttonexsercise = findViewById(R.id.buttonexsercise);
         buttonexsercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonup20=findViewById(R.id.buttonup20);
+        buttonup20 = findViewById(R.id.buttonup20);
         buttonup20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               e1.upto20();
+                e1.upto20();
             }
         });
 
@@ -85,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         buttonup10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            e1.upto10();
+                e1.upto10();
             }
         });
         buttoncheck.setOnClickListener(new View.OnClickListener() {
@@ -93,24 +104,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                if(e1.check(Etenswer.getText().toString())) {
+                if (e1.check(Etenswer.getText().toString())) {
                     Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
                     nom1.TrackScore(score);
 
-                }else
-                    Toast.makeText(MainActivity.this,"fail",Toast.LENGTH_SHORT).show();
-                score=0;
+                } else
+                    Toast.makeText(MainActivity.this, "fail", Toast.LENGTH_SHORT).show();
+                score = 0;
             }
 
         });
-
-
-
+        ratebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RateActivity.class);
+                activityResultLauncher.launch(intent);
+            }
+        });
 
 
     }
-
-
-
-
 }
+
+

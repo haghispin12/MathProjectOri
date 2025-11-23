@@ -7,7 +7,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RateActivity">
+    tools:context=".RateActivity"
+    android:gravity="center"
+    >
 
 
 <SeekBar
@@ -17,6 +19,15 @@
     android:min="100"
     android:progress="50"
     android:id="@+id/seekbar"
-    android:layout_gravity="center"
+    android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:id="@+id/send"
+        android:text="save"
+         android:textSize="30dp"
+      android:textStyle="bold"/>
+
 
   </LinearLayout>

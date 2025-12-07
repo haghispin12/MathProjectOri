@@ -1,6 +1,7 @@
 package com.example.mathporjectori;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-
+            int myrate=result.getData().getIntExtra("ratekey",-1);
+            Toast toast = Toast.makeText(MainActivity.this,myrate,Toast.LENGTH_SHORT);
         }
     });
 
@@ -119,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RateActivity.class);
                 activityResultLauncher.launch(intent);
+
             }
         });
 

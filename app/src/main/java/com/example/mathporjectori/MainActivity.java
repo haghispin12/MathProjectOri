@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         Etenswer = findViewById(R.id.Etenswer);
         TVseconednum = findViewById(R.id.TVseconednum);
         buttoncheck = findViewById(R.id.buttoncheck);
+        ratebutton= findViewById(R.id.ratebutton);
 
 
         excallback = new Excallback() {

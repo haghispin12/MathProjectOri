@@ -42,35 +42,42 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {//happand first when the activity being first opened
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("userkey");
-        Toast.makeText(MainActivity.this, username, Toast.LENGTH_SHORT).show();
-        User nom1 = new User(username);
+        Intent intent = getIntent();//making the ground for getting intent from startActivity
+        String username = intent.getStringExtra("userkey");//gets the values from startActivity
+        Toast.makeText(MainActivity.this, username, Toast.LENGTH_SHORT).show();//send up a massage with the user name
+        User nom1 = new User(username);//take an  user-object that eill hold the username
 
+/**
+ * This gets the number that had been drooled and shows them in the TextVies for the user
+ */
+//        excallback = new Excallback() {
+//            @Override
+//            public void showNumber(int number1, int number2, int score) {
+//                TVfirstnum.setText(number1 + "");
+//                TVseconednum.setText(number2 + "");
+//            }
+//        };
 
-        excallback = new Excallback() {
-            @Override
-            public void showNumber(int number1, int number2, int score) {
-                TVfirstnum.setText(number1 + "");
-                TVseconednum.setText(number2 + "");
-            }
-        };
+/**
+ * create an Excallback object
+ */
 
-
-        Excallback Excallback;
-        e1 = new Exercise(excallback);
+        /**
+         * all thefind view by id for all
+         */
         TVfirstnum = findViewById(R.id.TVfirstnum1);
         Etenswer = findViewById(R.id.Etenswer);
         TVseconednum = findViewById(R.id.TVseconednum);
         buttoncheck = findViewById(R.id.buttoncheck);
         ratebutton= findViewById(R.id.ratebutton);
-
-
-        excallback = new Excallback() {
+        buttonup20 = findViewById(R.id.buttonup20);
+        buttonup10 = findViewById(R.id.buttonup10);
+        buttonexsercise = findViewById(R.id.buttonexsercise);
+        excallback = new Excallback() {//send out an object to the ExerciseActivity and there he act some act to change the numbers
             @Override
             public void showNumber(int number1, int number2, int score1) {
                 TVfirstnum.setText(number1);
@@ -79,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-        buttonexsercise = findViewById(R.id.buttonexsercise);
+        //Excallback Excallback;
+        e1 = new Exercise(excallback);
+
         buttonexsercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonup20 = findViewById(R.id.buttonup20);
+
         buttonup20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        buttonup10 = findViewById(R.id.buttonup10);
+
         buttonup10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -19,7 +19,7 @@ public class StartActivity extends AppCompatActivity {
     private EditText name;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {//is when the activity being first opened
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         initeview();

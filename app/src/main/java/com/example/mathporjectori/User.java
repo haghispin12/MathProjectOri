@@ -18,4 +18,7 @@ public class User {
     public int  ReturnEnswer(){
         return score;
     }
+    public void setRate(int num){
+        rate=num;
+    }
 }

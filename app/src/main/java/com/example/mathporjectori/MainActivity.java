@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onActivityResult(ActivityResult result) {
             int myrate=result.getData().getIntExtra("ratekey",-1);
-            Toast toast = Toast.makeText(MainActivity.this,myrate,Toast.LENGTH_SHORT);
+            Toast.makeText(MainActivity.this,myrate+"",Toast.LENGTH_SHORT).show();
+            nom1.setRate(myrate);
         }
     });
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();//making the ground for getting intent from startActivity
         String username = intent.getStringExtra("userkey");//gets the values from startActivity
         Toast.makeText(MainActivity.this, username, Toast.LENGTH_SHORT).show();//send up a massage with the user name
-        User nom1 = new User(username);//take an  user-object that eill hold the username
+         nom1 = new User(username);//take an  user-object that eill hold the username
 
 /**
  * This gets the number that had been drooled and shows them in the TextVies for the user
@@ -80,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
         excallback = new Excallback() {//send out an object to the ExerciseActivity and there he act some act to change the numbers
             @Override
             public void showNumber(int number1, int number2, int score1) {
-                TVfirstnum.setText(number1);
-                TVseconednum.setText(number2);
+                TVfirstnum.setText(number1+"");
+                TVseconednum.setText(number2+"");
                 score = score1;
 
             }

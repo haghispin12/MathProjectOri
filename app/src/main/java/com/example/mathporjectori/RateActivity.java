@@ -17,21 +17,29 @@ public class RateActivity extends AppCompatActivity {
     private Button buttonrate;
     private SeekBar SK;
 
+    private int ratevalue;
+
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_rate);
-buttonrate=findViewById(R.id.send);
+        buttonrate=findViewById(R.id.send);
+        SK=findViewById(R.id.seekbar);
+//        SK.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ratevalue=SK.getProgress();
+//            }
+//        });
 buttonrate.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Intent inn= new Intent();
-        inn.putExtra("ratekey",SK.getProgress());
-        setResult(RESULT_OK,inn);
+       Intent inn= new Intent();
+       inn.putExtra("ratekey",SK.getProgress());
+       setResult(RESULT_OK,inn);
         finish();
     }
 });

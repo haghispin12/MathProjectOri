@@ -1,6 +1,7 @@
 package com.example.mathporjectori;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,8 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
 public class MainActivity extends AppCompatActivity {
 
     private Excallback excallback;
@@ -29,14 +32,16 @@ public class MainActivity extends AppCompatActivity {
     private EditText Etenswer;
     private TextView TVseconednum;
     private TextView TVfirstnum;
+    private Button showall;
     private int score;
     private User nom1;
+
 
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-            int myrate=result.getData().getIntExtra("ratekey",-1);
-            Toast.makeText(MainActivity.this,myrate+"",Toast.LENGTH_SHORT).show();
+            int myrate = result.getData().getIntExtra("ratekey", -1);
+            Toast.makeText(MainActivity.this, myrate + "", Toast.LENGTH_SHORT).show();
             nom1.setRate(myrate);
         }
     });
@@ -50,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();//making the ground for getting intent from startActivity
         String username = intent.getStringExtra("userkey");//gets the values from startActivity
         Toast.makeText(MainActivity.this, username, Toast.LENGTH_SHORT).show();//send up a massage with the user name
-         nom1 = new User(username);//take an  user-object that eill hold the username
+        nom1 = new User(username);//take an  user-object that eill hold the username
+
 
 /**
  * This gets the number that had been drooled and shows them in the TextVies for the user
@@ -74,15 +80,16 @@ public class MainActivity extends AppCompatActivity {
         Etenswer = findViewById(R.id.Etenswer);
         TVseconednum = findViewById(R.id.TVseconednum);
         buttoncheck = findViewById(R.id.buttoncheck);
-        ratebutton= findViewById(R.id.ratebutton);
+        ratebutton = findViewById(R.id.ratebutton);
         buttonup20 = findViewById(R.id.buttonup20);
         buttonup10 = findViewById(R.id.buttonup10);
         buttonexsercise = findViewById(R.id.buttonexsercise);
+        showall = findViewById(R.id.showalluser);
         excallback = new Excallback() {//send out an object to the ExerciseActivity and there he act some act to change the numbers
             @Override
             public void showNumber(int number1, int number2, int score1) {
-                TVfirstnum.setText(number1+"");
-                TVseconednum.setText(number2+"");
+                TVfirstnum.setText(number1 + "");
+                TVseconednum.setText(number2 + "");
                 score = score1;
 
             }
@@ -135,8 +142,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        showall.setOnClickListener(new View.OnClickListener() {
 
-
+            @Override
+            public void onClick(View v) {
+                Gson gson=new Gson();
+                String json =gson.toJson(nom1);
+                Bundle bundle = new Bundle();
+                bundle.putString("nom1",json);
+                Fragmentlayout fragment = new Fragmentlayout();
+                fragment.setArguments(bundle);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, fragment, "anyTagName").commit();
+            }
+        });
     }
 }
 

@@ -4,8 +4,8 @@ public class User {
     private String name;
     private int score=0;
     private int rate;
-    public User(String name){
-        name=this.name;
+    public User(String name1){
+        this.name=name1;
     }
     public User(String name,int score,int rate){
         name=this.name;
@@ -20,5 +20,20 @@ public class User {
     }
     public void setRate(int num){
         rate=num;
+    }
+    public String getName(){
+       return name;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getRate() {
+        return rate;
     }
 }
